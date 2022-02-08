@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Join | session</title>
+	<link rel="icon" href="d1.png" type="image/gif" sizes="16x16">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<!-- <script type="text/javascript">
+    history.pushState(null, null, location.href);
+    history.back();
+    history.forward();
+    window.onpopstate = function () { history.go(1); };
+	</script> -->
+</head>
+
+<body class="centered-form">
+
+	<!-- <div class="centered-form__form"> -->
+		<form name="myDetails" action="JavaScript:openNotepad()"  onsubmit = "return validate()" class="box">
+			<!-- <div class="form-field"> --><h2>Join Room</h2></div>
+	 		<div class="form-field">
+				<!-- <label>Your name</label> -->
+				<input type="text" name="name" autofocus="yes" autocomplete="off" placeholder="YOUR NAME">
+			</div>
+			<div class="form-field">
+				<!-- <label>Room ID</label> -->
+				<input type="text" name="room" autofocus="yes" autocomplete="off" placeholder="ROOM ID">
+			</div>
+			<div class="form-field">
+				<button class="button">JOIN</button>
+			</div>
+		</form>
+	<!-- </div> -->
+
+	<script type="text/javascript">
+	function openNotepad()
+	{
+		var child = window.open(`/notepad.html?name=${document.forms["myDetails"]["name"].value}&room=${document.forms["myDetails"]["room"].value}`);
+		window.close();
+	}
+	
+	function validate(){
+		let user_name = document.forms["myDetails"]["name"].value;
+		let room_id = document.forms["myDetails"]["room"].value;
+
+		user_name = user_name.trim();
+		room_id = room_id.trim();
+
+		if(user_name.length == 0 && room_id.length == 0)
+		{
+			document.forms["myDetails"]["name"].value = ""
+			document.forms["myDetails"]["room"].value = ""
+			alert("Name and Room ID must be filled")
+			return false;
+		}
+
+		if(user_name.length == 0)
+		{
+			document.forms["myDetails"]["name"].value = ""
+			alert("Name must be filled");
+			return false;
+		}
+
+		if(room_id.length == 0)
+		{
+			document.forms["myDetails"]["room"].value = ""
+			alert("Room ID must be filled");
+			return false;
+		}
+
+		return true;
+	}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="d1.png" type="image/gif" sizes="16x16" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./styles_notepad.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+      /* .maincontent {
+        display: grid;
+        margin: 0;
+        grid-template-columns: 6fr 0fr;
+        border: none;
+      } */
+
+      .video-position {
+        position: absolute;
+      }
+
+      .box1 {
+        display: inline;
+        height: 100%;
+        margin-bottom: -1px;
+      }
+
+      #video-chat-container {
+        width: 39%;
+        /* margin-top: -958px; */
+        display: inline-block;
+        height: 50%;
+        float: right;
+        margin:0.5%;
+        /*margin-left: 62.5%;*/
+        overflow: hidden;
+        background-color: black;
+      }
+
+      #local-video {
+        position: absolute;
+        /*float: right;*/
+        border: 2px solid white;
+        margin-left: 2px;
+        margin-bottom: 2px;
+        height: 30%;
+        width: 30%;
+        bottom: 0px;
+        left: 0px;
+      }
+
+      #remote-video {
+        /*position: absolute;*/
+        height: 100%;
+        width: 100%;
+      }
+
+      #image {
+        border: 5px solid #24292e;
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        margin-left: 225px;
+        border-radius: 50%;
+        text-indent: center;
+      }
+
+      #img {
+        height: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
+      #chat-box {
+        width: 100%;
+        float: right;
+        height: 100%;
+        border: 2px solid #24292e;
+        background-image: url("chatbox-bck.png");
+        display: inline-block;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #message-container {
+        width: 39%;
+        height: 500px;
+      }
+
+      #message-container div {
+        max-width: 200px;
+        word-wrap: break-word;
+        display: block;
+        background-color: #24292e;
+        color: white;
+        /*margin-left: 420px;*/
+        border: 2px solid #24292e;
+        padding: 20px;
+        margin-top: 5px;
+        font-weight: bold;
+        border-radius: 20px;
+      }
+
+      #send-container {
+        bottom: 0;
+        display: inline;
+        background-color: white;
+        width: 500px;
+        height: 100px;
+        margin-top: 5%;
+      }
+
+      #message-input {
+        width: 550px;
+        height: 32px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      #cap_people{
+        display: inline;
+        width:50%; 
+        /*float: left;*/ 
+        /*margin-top: -1.9%;*/ 
+        height:100%;  
+        /*text-align: left;*/ 
+        font-size: large; 
+        /* margin-left: 30%;  */
+        font-weight: 600;
+      }
+
+      #report{
+        display: none; 
+        width:15%;
+        /* margin-top: 5%;  */
+        height:100%;  
+        text-align: left; 
+        font-size: large; 
+        /*margin-left: 21%;*/ 
+        font-weight: 600;
+      }
+
+      #whole_chat {
+        display: inline-block;
+        float: right;
+        width: 39%;
+        overflow: hidden;
+        margin-top: -12%;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="small-screen-msg">
+      <p>Not Authorized</p>
+      <p>Open in Laptop</p>
+    </div>
+    <!-- <h1>DASH</h1> -->
+    <header class="header_division_class">
+      <div class="logo">
+        
+        <img class="image_class" src="dash1.png" placeholder="DASH logo" />
+        <p id="closing" style="display: inline-flex;">Press F11 else exiting in 10 seconds...</p>
+    
+<!--         <script>
+        console.log(`running script`)
+            let seconds = 10
+            let countdown = setInterval(function() {
+              seconds--;
+              document.getElementById("closing").innerText = `Change to full screen else exiting in ${seconds} seconds...`;
+              if (seconds <= 0) clearInterval(countdown);
+              }, 1000);
+      </script> -->
+
+        <p id="MyClockDisplay" class="clock" style="display: inline-flex; margin-left: 20%" onload="showTime()"></p>
+      </div>
+    </header>
+
+    <div class="box1" style="width: 100%;">
+      <div class="header2" style="width: 60%;display: inline-block;">
+
+        <span id="cap_people">
+          People in room
+        </span>
+
+        <span id="report" style="color: red;display: inline-block;">
+          
+        </span>
+        
+        <div id="select_div" style="display: inline-block;">
+          <select class="select" id="language">
+            <option disabled="disabled" visibility="hidden">
+              Select a language.
+            </option>
+            <option value="c"><b>C</b></option>
+            <option value="cpp14" selected><b>C++</b></option>
+            <option value="java"><b>Java</b></option>
+            <option value="python3"><b>Python</b></option>
+          </select>
+        </div>
+
+        
+      </div>
+
+      <div
+        id="video-chat-container"
+        class="video-position"
+        style="display: inline-block !important;"
+      >
+        <video id="local-video" autoplay="autoplay" muted></video>
+        <video id="remote-video" autoplay="autoplay"></video>
+      </div>
+
+      <!-- <div class="maincontent"> -->
+      <!-- <div class="section1"> -->
+      <div class="main_textarea">
+        <textarea
+          id="line_numbering_area"
+          rows="5000"
+          cols="5000"
+          readonly
+        ></textarea>
+        <textarea
+          rows="20"
+          cols="30"
+          id="editor"
+          placeholder="WRITE YOUR CODE HERE..."
+          class="lined"
+        ></textarea>
+      </div>
+
+      <div id="whole_chat">
+      <div id="chat-box">
+        <div id="message-container"></div>
+      </div>
+      <form id="send-container">
+        <div style="display: inline;"><input type="text" id="message-input" autocomplete="off"  placeholder= "Type your message here..." style="width: 90%; height: 37px; margin-top: 9px;"/></div>
+        <div style="display:inline; margin-top: -1%;"><button type="submit" id="send-button" style="background-color: #24292e; width:9%;"> <img src="chatfin-removebg-preview.png" style="width: 100%; height:100%; margin: 0% 0% 0% 0%;"> </button>
+        </div>
+        </form>
+    </div>
+
+      <!-- <script src="socket.io/socket.io.js"></script>
+       <script src="script.js"></script> -->
+
+      <div class="io_boxes" style="display: inline-flex">
+        <div style="margin-top:-0.8%;">
+          <textarea
+            rows="100"
+            cols="500"
+            id="input_text"
+            placeholder="INPUT..."
+          ></textarea>
+        </div>
+        <div style="margin-top:-0.8%;">
+          <textarea
+            rows="500"
+            cols="500"
+            id="output_text"
+            placeholder="OUTPUT..."
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="button_div" style="margin-top: -0.4%">
+        <button type="reset" class="end_btn" onclick="confirmation()">
+          <i>EXIT MEET</i>
+        </button>
+        <div class="loader"></div>
+        <button type="button" class="button" id="execute" style="margin-right: 0.2%;">
+          <i>EXECUTE</i>
+        </button>
+      </div>
+
+      
+    </div>
+
+    <script type="text/javascript">
+
+      async function checker(){
+      const link = document.URL;
+      
+      let promise = new Promise((resolve, reject) => {
+      if(link.includes('name') && link.includes('room'))
+      {
+        resolve();
+      }
+
+      else
+      {
+        window.location.replace('main-page.html')
+        resolve();
+      }})
+
+      await promise;
+     }
+
+     checker();
+
+      function confirmation() {
+           window.close();
+      }
+
+      let seconds = 10
+      function timer(){
+          let countdown = setInterval(function() {
+            seconds--;
+            document.getElementById("closing").innerText = `Press F11 else exiting in ${seconds} seconds...`;
+            
+            if (document.fullscreen == true) {
+                document.getElementById("closing").style.display = "none";
+                document.getElementById("MyClockDisplay").style.marginLeft =
+        // window.close();
+        74.38 + "%";
+                clearInterval(countdown);
+        }
+        
+        else if(seconds <= 0)
+        {
+          window.parent.close();
+        }
+            
+            document.addEventListener("keydown", (e) => {
+              if(e.keyCode == 122)
+              {
+               seconds = 10;
+               document.getElementById('closing').style.display = 'none'
+               document.getElementById('MyClockDisplay').style.marginLeft = 74.38 + "%"
+               clearInterval(countdown);
+              }
+            })
+            
+            }, 1000);
+          }
+        
+      timer();
+
+      function showTime() {
+
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+          h = 12;
+        }
+
+        if (h > 12) {
+          h = h - 12;
+          session = "PM";
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+        
+
+        setTimeout(showTime, 1000);
+      }
+
+      showTime();
+
+    </script>
+     <script src='fullscreen.js'></script>
+  </body>
+  <script src="./socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="line_numbering.js"></script>
+  <script src="./client.js"></script>
+</html>

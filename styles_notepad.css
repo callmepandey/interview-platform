@@ -1,0 +1,344 @@
+body {
+  margin:0px;
+  display: inline-block;
+  /* grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  justify-content: space-evenly; */
+}
+
+.header_division_class {
+  background-color: #24292e;
+  display: inline-block;
+}
+
+.header_class {
+  height: 10%;
+  width: 100%;
+}
+
+.logo{
+  display: inline-block;
+}
+
+
+img {
+  width: 11%;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: 10px;
+}
+
+#closing {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-style: monospace;
+  color: white;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 21%;
+}
+
+.clock {
+    /*position: absolute;*/
+    /*top: 50%;
+    left: 50%;*/
+    /*transform: translateX(-50%) translateY(-50%);*/
+    display: inline-block;
+    margin-left: 15%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: white;
+    font-size: 30px;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+
+
+#select_div {
+  /*margin-left: 756px;*/
+  display: inline-block;
+  border:3px solid #24292e;
+  border-radius: 1px;
+  width:154px;
+  float: right;
+  /*margin-left: 60%;*/
+  overflow: hidden;
+}
+.select {
+  display: inline-block;
+  text-align: center;
+  text-align-last: center; 
+  font-weight: bolder;
+  width: 150px;
+  padding: 1px 1px 1px 1px;
+  overflow: hidden;
+}
+.select:focus{
+  outline:0;
+}
+
+
+.main_textarea {
+display: inline-block;
+height: 500px;
+overflow: hidden;
+/* margin-bottom: -100px; */
+
+}
+textarea:focus{
+  outline:0;
+}
+
+#line_numbering_area {
+  display: inline-block;
+  /*position: absolute;*/
+  resize: none;
+  /*float: left;*/
+  width:2%;
+  height: 100%;
+  background-color: #24292e;
+  color: grey;
+  text-align: right;
+  overflow: hidden;
+  font-size: 15px;
+}
+#editor {
+  display: inline-block;
+ /* position: relative;*/
+  resize: none;
+  width: 57.6%;
+  height: 100%;
+  background-color: #24292e;
+  font-size: 15px;
+  color: white;
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.io_boxes {
+  display: flex;
+  width: 50%;
+  margin-top: 0.65%
+}
+
+#input_text {
+  display: inline;
+  position: relative;
+  resize: none;
+  /*margin-left:37px;*/
+  margin-top: -5px;
+  width: 100%;
+  height: 100px;
+  background-color: #24292e;
+  color: white;
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  /* grid-row-start: 9;
+  grid-row-end: 11;
+ grid-column-start: 1;
+ grid-column-end: 4; */
+}
+
+#output_text {
+  display: inline;
+  position: relative;
+  margin-left:36.7%;
+  margin-top: -5px;
+  /* float: right; */
+  resize: none;
+  width: 103.8%;
+  height: 100px;
+  background-color: #24292e;
+  color: white;
+  overflow-y: auto;
+  overflow-x: auto;
+  /* grid-row-start: 9;
+  grid-row-end: 11;
+ grid-column-start: 5;
+ grid-column-end: 8; */
+ 
+}
+
+.loader {
+  display: none;
+  border: 16px solid #f3f3f3;
+  float: right;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 50%;
+  border-top: 16px solid #24292e;
+  border-bottom: 16px solid #24292e;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button:focus {
+  outline:0;
+}
+
+.button_div {
+  display: inline-block;
+  width: 60.3%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid white;
+  font-weight: bold;
+  /*border-radius: 10rem;*/
+  background-color: #24292e;
+  color: white;
+  box-shadow: 5px 5px 5px 2px #24292e;
+  padding: 15px;
+  margin-top: 2px;
+  float: right;
+  font-size: 0.9rem;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.button:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #24292e;
+  /*border-radius: 10rem;*/
+  z-index: -2;
+}
+.button:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.2s;
+  /*border-radius: 10rem;*/
+  z-index: -1;
+}
+.button:hover {
+  color: #24292e;
+}
+.button:hover:before {
+  width: 100%;
+}
+
+.button:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.end_btn {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid white;
+  font-weight: bold;
+  /*border-radius: 10rem;*/
+  background-color: #24292e;
+  color: white;
+  box-shadow: 5px 5px 5px 2px #24292e;
+  padding: 15px;
+  margin-top: 2px;
+  font-size: 0.9rem;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.end_btn:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #24292e;
+  /*border-radius: 10rem;*/
+  z-index: -2;
+}
+.end_btn:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.2s;
+  /*border-radius: 10rem;*/
+  z-index: -1;
+}
+.end_btn:hover {
+  color: #24292e;
+}
+.end_btn:hover:before {
+  width: 100%;
+}
+
+.end_btn:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.small-screen-msg {
+  top: calc(50% - 100px);
+  text-align: center;
+}
+
+.small-screen-msg p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+/*.small-screen-msg {
+      width: 0;
+  }*/
+
+  @media only screen and (min-width: 768px) {
+  /* For mobile phones: */
+  .small-screen-msg {
+      display: none;
+      visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 768px) {
+  /* For mobile phones: */
+  body {
+    visibility: hidden;
+  }
+
+  .box1 {
+    display: none;
+  }
+
+  .small-screen-msg {
+      display: inline-block;
+      visibility: visible;
+  }
+}
